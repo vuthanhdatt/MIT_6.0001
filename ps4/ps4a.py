@@ -23,18 +23,27 @@ def get_permutations(sequence):
     a different order than what is listed here.
     '''
 
-    pass #delete this line and replace with your code here
+    if len(sequence) == 1:
+        return [sequence]
+    elif len(sequence) == 2:
+        return [sequence, sequence[::-1]]
+    else:
+        seq_copy = sequence[:]
+        perm_list = []
+        for char in sequence:
+            perm_list +=  [char + x for x in get_permutations(seq_copy.replace(char, ''))]
+        return perm_list
+
 
 if __name__ == '__main__':
 #    #EXAMPLE
-#    example_input = 'abc'
-#    print('Input:', example_input)
-#    print('Expected Output:', ['abc', 'acb', 'bac', 'bca', 'cab', 'cba'])
-#    print('Actual Output:', get_permutations(example_input))
+    example_input = 'abc'
+    print('Input:', example_input)
+    print('Expected Output:', ['abc', 'acb', 'bac', 'bca', 'cab', 'cba'])
+    print('Actual Output:', get_permutations(example_input))
     
 #    # Put three example test cases here (for your sanity, limit your inputs
 #    to be three characters or fewer as you will have n! permutations for a 
 #    sequence of length n)
-
-    pass #delete this line and replace with your code here
+    print(get_permutations('abcd'))
 
